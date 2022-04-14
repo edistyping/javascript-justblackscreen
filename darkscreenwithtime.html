@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Screen</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            width: 100vw;
+            background-color: black;       
+        }
+        
+        .date {
+            color: orange;
+            font-size: 3em;
+            display: inline;
+        }
+
+        .time {
+            color: greenyellow;
+            font-size: 3em;
+            display: inline;
+        }
+    </style>
+</head>
+
+<body>
+    <p id="date" class="date"></p>
+    <p id="time" class="time"></p>
+
+    <script>
+        function setTime() {
+            var today = new Date();
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            mm = mm.length == 2 ? mm[1] : mm[0];
+            var dd = String(today.getDate()).padStart(2, '0');
+            var yyyy = today.getFullYear();
+            
+            
+            var hour = today.getHours() > 12 ? today.getHours() - 12 : today.getHours();
+            var min = today.getMinutes() < 10 ? "0" + today.getMinutes() : today.getMinutes();
+            var sec = today.getSeconds() < 10 ? "0" + today.getSeconds() : today.getSeconds();
+            var am_pm = today.getHours() >= 12 ? "PM" : "AM";
+            // var time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+            const var_date = mm + "/" + dd + "/" + yyyy + "    ";   
+            const var_time = hour + ":" + min + ":" + sec + " " + am_pm;   
+            document.getElementById("date").innerHTML = var_date;
+            document.getElementById("time").innerHTML = var_time;
+        }
+        setInterval(setTime, 1000);
+    </script>
+</body>
+
+</html>
